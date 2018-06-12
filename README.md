@@ -17,6 +17,14 @@ Download here : [Demo Apk](https://github.com/mayursojitra/Web-Mobile-App/raw/ma
 ```java
 private String url = "https://www.theandroid-mania.com/";
 ```
+3. Change App Name and Other Credentials ```app/src/main/res/values/strings.xml```
+```xml
+<string name="app_name">The Android Mania</string>
+<string name="header_title">Murait Technologies</string>
+<string name="title_activity_home">The Android Mania</string>
+<string name="email">hello@murait.com</string>
+<string name="phone">+919999998888</string>
+```
 
 
 # Author
