@@ -26,11 +26,6 @@ private String url = "https://www.theandroid-mania.com/";
 <string name="phone">+919999998888</string>
 ```
 
-
-# Author
-
-- [Mayur Sojitra](https://www.linkedin.com/in/mayursojitra/)
-
 # Blog
 
 - [The Android Mania](https://www.theandroid-mania.com/)
@@ -39,6 +34,14 @@ private String url = "https://www.theandroid-mania.com/";
 
 - [People per hour](http://pph.me/mayursojitra)
 - [UpWork](https://www.upwork.com/freelancers/~019d3db2c3f08414b8)
+
+# Network Profiles
+
+- [Linkedin](https://www.linkedin.com/in/mayursojitra/)
+- [Facebook](https://www.facebook.com/mayur.sojitra55)
+- [Twitter](https://twitter.com/mayur_sojitra)
+- [Instagram](https://www.instagram.com/mayursojitra/)
+- [Quora](https://www.quora.com/profile/Mayur-Sojitra)
 
 # Contact Me
 
