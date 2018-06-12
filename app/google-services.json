@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "495971574310",
+    "firebase_url": "https://test-tam-513dc.firebaseio.com",
+    "project_id": "test-tam-513dc",
+    "storage_bucket": "test-tam-513dc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:495971574310:android:2c6cda2f8e5e763e",
+        "android_client_info": {
+          "package_name": "murait.the.android.mania"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "495971574310-mmljra0kuhhbuff9386a0v9kfqqjjbeu.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "495971574310-mmljra0kuhhbuff9386a0v9kfqqjjbeu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAdObjXMAknVlmAvZJ_sFJrlAQOhSrNvGc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
