@@ -10,6 +10,10 @@ Download here : [Demo Apk](https://github.com/mayursojitra/Web-Mobile-App/raw/ma
 
 ![ANDROID WEBVIEW](https://raw.githubusercontent.com/mayursojitra/Web-Mobile-App/master/screenshot-1.png) ![ANDROID NAVIGATION DRAWER](https://raw.githubusercontent.com/mayursojitra/Web-Mobile-App/master/screenshot-2.png)
 
+# Edits
+
+1. Replace logo **logo.png** in [code]app/src/main/res/drawable/[/code] directory
+
 
 # Author
 
