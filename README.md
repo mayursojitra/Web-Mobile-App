@@ -14,7 +14,9 @@ Download here : [Demo Apk](https://github.com/mayursojitra/Web-Mobile-App/raw/ma
 
 1. Replace logo **logo.png** in ```app/src/main/res/drawable/``` directory
 2. Change url variable in ```app/src/main/java/murait/the/android/mania/HomeActivity.java```  
-```private String url = "https://www.theandroid-mania.com/";```
+```java
+private String url = "https://www.theandroid-mania.com/";
+```
 
 
 # Author
