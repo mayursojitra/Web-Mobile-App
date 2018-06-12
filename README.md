@@ -12,7 +12,7 @@ Download here : [Demo Apk](https://github.com/mayursojitra/Web-Mobile-App/raw/ma
 
 # Edits
 
-1. Replace logo **logo.png** in [code]app/src/main/res/drawable/[/code] directory
+1. Replace logo **logo.png** in ```app/src/main/res/drawable/``` directory
 
 
 # Author
