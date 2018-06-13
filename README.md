@@ -12,6 +12,16 @@ Download here : [Demo Apk](https://github.com/mayursojitra/Web-Mobile-App/raw/ma
 
 # Configurations
 
+## Change Package name
+- Change package name in  ```app/build.gradle```
+```json
+applicationId "murait.the.android.mania"
+```
+Replace with your package name
+```json
+applicationId "your.package.name"
+```
+
 ## Replace Logo
 - Replace logo **logo.png** in ```app/src/main/res/drawable/``` directory
 
