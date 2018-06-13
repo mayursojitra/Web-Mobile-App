@@ -36,6 +36,8 @@ private String url = "https://www.theandroid-mania.com/";
 - Give the package name of your project (mine is **murait.the.android.mania**) in which you are going to integrate the Firebase. Here the **google-services.json** file will be downloaded when you press add app button.
 ![FIREBASE NEW PROJECTS](https://raw.githubusercontent.com/mayursojitra/Web-Mobile-App/master/screenshot-3.png)
 ![FIREBASE NEW ANDROID APP](https://raw.githubusercontent.com/mayursojitra/Web-Mobile-App/master/screenshot-4.png)
+![FIREBASE NEW ANDROID APP](https://raw.githubusercontent.com/mayursojitra/Web-Mobile-App/master/screenshot-5.png)
+![FIREBASE NEW ANDROID APP](https://raw.githubusercontent.com/mayursojitra/Web-Mobile-App/master/screenshot-6.png)
 
 
 # Blog
