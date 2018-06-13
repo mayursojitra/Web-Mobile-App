@@ -10,14 +10,19 @@ Download here : [Demo Apk](https://github.com/mayursojitra/Web-Mobile-App/raw/ma
 
 ![ANDROID WEBVIEW](https://raw.githubusercontent.com/mayursojitra/Web-Mobile-App/master/screenshot-1.png) ![ANDROID NAVIGATION DRAWER](https://raw.githubusercontent.com/mayursojitra/Web-Mobile-App/master/screenshot-2.png)
 
-# Edits
+# Configurations
 
-1. Replace logo **logo.png** in ```app/src/main/res/drawable/``` directory
-2. Change url variable in ```app/src/main/java/murait/the/android/mania/HomeActivity.java```  
+## Replace Logo
+- Replace logo **logo.png** in ```app/src/main/res/drawable/``` directory
+
+## Website URL
+- Change url variable in ```app/src/main/java/murait/the/android/mania/HomeActivity.java```  
 ```java
 private String url = "https://www.theandroid-mania.com/";
 ```
-3. Change App Name and Other Credentials ```app/src/main/res/values/strings.xml```
+
+## App Credentials
+- Change App Name and Other Credentials ```app/src/main/res/values/strings.xml```
 ```xml
 <string name="app_name">The Android Mania</string>
 <string name="header_title">Murait Technologies</string>
