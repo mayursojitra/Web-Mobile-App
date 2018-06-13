@@ -31,6 +31,11 @@ private String url = "https://www.theandroid-mania.com/";
 <string name="phone">+919999998888</string>
 ```
 
+## Push Notifications
+- First thing you need to do is go to **(https://firebase.google.com/)** and make an account to gain access to their console. After you gain access to the console you can start by creating your first project.
+- Give the package name of your project (mine is **murait.the.android.mania**) in which you are going to integrate the Firebase. Here the **google-services.json** file will be downloaded when you press add app button.
+
+
 # Blog
 
 - [The Android Mania](https://www.theandroid-mania.com/)
