@@ -45,7 +45,7 @@ private String url = "https://www.theandroid-mania.com/";
 ![Onesignal Project](https://raw.githubusercontent.com/mayursojitra/Web-Mobile-App/master/screenshots/screenshot-7.png)
 
 
-~~**You Are DONE**~~
+###_**You Are DONE**_
 
 
 # Blog
