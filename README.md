@@ -34,6 +34,8 @@ private String url = "https://www.theandroid-mania.com/";
 ## Push Notifications
 - First thing you need to do is go to **(https://firebase.google.com/)** and make an account to gain access to their console. After you gain access to the console you can start by creating your first project.
 - Give the package name of your project (mine is **murait.the.android.mania**) in which you are going to integrate the Firebase. Here the **google-services.json** file will be downloaded when you press add app button.
+![FIREBASE NEW PROJECTS](https://raw.githubusercontent.com/mayursojitra/Web-Mobile-App/master/screenshot-3.png)
+![FIREBASE NEW ANDROID APP](https://raw.githubusercontent.com/mayursojitra/Web-Mobile-App/master/screenshot-4.png)
 
 
 # Blog
