@@ -3,7 +3,7 @@
 This is simple webview application with basic functionalities
 
 ## Featured in
-[![Top 40 Android Developer Blogs](https://img.shields.io/badge/AndroidDev%20Digest-%2325-blue.svg)](https://blog.feedspot.com/android_developer_blogs/)
+[Top 40 Android Developer Blogs](https://blog.feedspot.com/android_developer_blogs/)
 
 # Demo
 
