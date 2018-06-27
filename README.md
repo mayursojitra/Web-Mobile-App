@@ -2,9 +2,6 @@
 
 This is simple webview application with basic functionalities
 
-## Featured in
-[![Top 40 Android Developer Blogs](https://img.shields.io/badge/AndroidDev%20Digest-%23100-blue.svg)](https://blog.feedspot.com/android_developer_blogs/)
-
 # Demo
 
 Download here : [Demo Apk](https://github.com/mayursojitra/Web-Mobile-App/raw/master/app-debug.apk)
