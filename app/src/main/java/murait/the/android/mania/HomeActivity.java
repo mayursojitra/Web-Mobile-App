@@ -19,22 +19,29 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.webkit.WebResourceError;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebResourceResponse;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.InterstitialAd;
+
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     ProgressDialog progressDialog;
+    PrefManager prefManager;
     private Activity mContext = this;
     private WebView webView;
     private String url = "https://www.theandroid-mania.com/";
     private View llError;
     private String currentUrl = "";
+    private AdView mAdView;
+    private InterstitialAd mInterstitialAd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +51,10 @@ public class HomeActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         llError = findViewById(R.id.llError);
+
+        prefManager = new PrefManager(mContext);
+
+        loadAds();
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -78,6 +89,59 @@ public class HomeActivity extends AppCompatActivity
         }
 
 
+    }
+
+
+    private void loadAds() {
+        mInterstitialAd = new InterstitialAd(this);
+        mInterstitialAd.setAdUnitId(getString(R.string.interstitial_full_screen));
+
+        AdRequest interAdRequest = new AdRequest.Builder().build();
+        // Load ads into Interstitial Ads
+        mInterstitialAd.loadAd(interAdRequest);
+
+        mInterstitialAd.setAdListener(new AdListener() {
+            public void onAdLoaded() {
+                if (mInterstitialAd.isLoaded()) {
+                    mInterstitialAd.show();
+                }
+            }
+        });
+
+        mAdView = (AdView) findViewById(R.id.adView);
+
+        AdRequest adRequest = new AdRequest.Builder()
+                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+                .build();
+
+        mAdView.setAdListener(new AdListener() {
+            @Override
+            public void onAdLoaded() {
+                mAdView.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onAdClosed() {
+                mAdView.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onAdFailedToLoad(int errorCode) {
+                mAdView.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onAdLeftApplication() {
+                mAdView.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onAdOpened() {
+                super.onAdOpened();
+            }
+        });
+
+        mAdView.loadAd(adRequest);
     }
 
     @Override
@@ -206,6 +270,11 @@ public class HomeActivity extends AppCompatActivity
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 currentUrl = url;
                 view.loadUrl(url);
+                prefManager.addVar();
+                if (prefManager.getVar() % PrefManager.ADS_SHOW_TIME == 0) {
+                    if (mInterstitialAd.isLoaded())
+                        mInterstitialAd.show();
+                }
                 return true;
             }
 
@@ -216,6 +285,7 @@ public class HomeActivity extends AppCompatActivity
                     progressDialog = new ProgressDialog(mContext);
                     progressDialog.setMessage("Loading...");
                     progressDialog.show();
+                    prefManager.addVar();
                 }
             }
 
@@ -224,6 +294,7 @@ public class HomeActivity extends AppCompatActivity
                 try {
                     if (progressDialog.isShowing()) {
                         progressDialog.dismiss();
+                        prefManager.addVar();
                         progressDialog = null;
                     }
                 } catch (Exception exception) {
