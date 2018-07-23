@@ -42,6 +42,7 @@ public class HomeActivity extends AppCompatActivity
     private String currentUrl = "";
     private AdView mAdView;
     private InterstitialAd mInterstitialAd;
+    private AdRequest interAdRequest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,12 +92,11 @@ public class HomeActivity extends AppCompatActivity
 
     }
 
-
     private void loadAds() {
         mInterstitialAd = new InterstitialAd(this);
         mInterstitialAd.setAdUnitId(getString(R.string.interstitial_full_screen));
 
-        AdRequest interAdRequest = new AdRequest.Builder().build();
+        interAdRequest = new AdRequest.Builder().build();
         // Load ads into Interstitial Ads
         mInterstitialAd.loadAd(interAdRequest);
 
@@ -272,7 +272,6 @@ public class HomeActivity extends AppCompatActivity
                 view.loadUrl(url);
                 prefManager.addVar();
                 if (prefManager.getVar() % PrefManager.ADS_SHOW_TIME == 0) {
-                    AdRequest interAdRequest = new AdRequest.Builder().build();
                     // Load ads into Interstitial Ads
                     mInterstitialAd.loadAd(interAdRequest);
                     if (mInterstitialAd.isLoaded())

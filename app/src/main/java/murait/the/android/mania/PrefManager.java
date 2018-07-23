@@ -7,7 +7,7 @@ import android.content.SharedPreferences;
 public class PrefManager {
     public static SharedPreferences pref;
     public SharedPreferences.Editor editor;
-    public final static int ADS_SHOW_TIME = 4;
+    public final static int ADS_SHOW_TIME = 10;
 
     PrefManager(Activity mContext) {
         if (pref == null) {
