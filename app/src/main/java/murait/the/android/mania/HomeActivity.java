@@ -272,6 +272,9 @@ public class HomeActivity extends AppCompatActivity
                 view.loadUrl(url);
                 prefManager.addVar();
                 if (prefManager.getVar() % PrefManager.ADS_SHOW_TIME == 0) {
+                    AdRequest interAdRequest = new AdRequest.Builder().build();
+                    // Load ads into Interstitial Ads
+                    mInterstitialAd.loadAd(interAdRequest);
                     if (mInterstitialAd.isLoaded())
                         mInterstitialAd.show();
                 }
