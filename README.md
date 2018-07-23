@@ -54,6 +54,16 @@ private String url = "https://www.theandroid-mania.com/";
 - Copy this **Server Key** and **Sender ID** and paste it in Onesignal Account
 ![Onesignal Project](https://raw.githubusercontent.com/mayursojitra/Web-Mobile-App/master/screenshots/screenshot-7.png)
 
+## AdMob Integration
+
+- Replace your ads id in ```app/src/main/res/values/strings.xml```
+```xml
+<!-- AdMob ad unit IDs -->
+    <string name="admob_app_id">ca-app-pub-XXXXXXXX~XXXXXXXXXXX</string>
+    <string name="banner_home_footer">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="interstitial_full_screen">ca-app-pub-3940256099942544/1033173712</string>
+```
+
 
 _**You Are DONE**_
 
