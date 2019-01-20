@@ -63,7 +63,39 @@ private String url = "https://www.theandroid-mania.com/";
     <string name="banner_home_footer">ca-app-pub-3940256099942544/6300978111</string>
     <string name="interstitial_full_screen">ca-app-pub-3940256099942544/1033173712</string>
 ```
+## No Action Bar WebView
+Change intent filter in `AndroidManifest.xml`
+```xml
+    <activity
+    android:name=".NoActionBarActivity"
+    android:theme="@style/AppTheme.NoActionBar">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+    </activity>
+    <activity
+    android:name=".SplashActivity"
+    android:theme="@style/AppTheme.NoActionBar">
+    </activity>
+```
 
+## WebView With Navigation Drawer
+Change intent filter in `AndroidManifest.xml`
+```xml
+    <activity
+    android:name=".NoActionBarActivity"
+    android:theme="@style/AppTheme.NoActionBar">
+    </activity>
+    <activity
+    android:name=".SplashActivity"
+    android:theme="@style/AppTheme.NoActionBar">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+    </activity>
+```
 
 _**You Are DONE**_
 
