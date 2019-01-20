@@ -9,13 +9,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.NavigationView;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -30,8 +24,7 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
 
-public class HomeActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+public class NoActionBarActivity extends AppCompatActivity {
 
     private ProgressDialog progressDialog;
     private PrefManager prefManager;
@@ -47,9 +40,7 @@ public class HomeActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        setContentView(R.layout.activity_no_action_bar);
         mContext = this;
 
         llError = findViewById(R.id.llError);
@@ -57,25 +48,6 @@ public class HomeActivity extends AppCompatActivity
         prefManager = new PrefManager(mContext);
 
         loadAds();
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String phno = "tel:" + getResources().getString(R.string.phone);
-                Intent i = new Intent(Intent.ACTION_DIAL, Uri.parse(phno));
-                mContext.startActivity(i);
-            }
-        });
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
-
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
 
         webView = (WebView) findViewById(R.id.webView);
 
@@ -89,8 +61,6 @@ public class HomeActivity extends AppCompatActivity
             if (progressDialog != null && progressDialog.isShowing())
                 progressDialog.dismiss();
         }
-
-
     }
 
     private void loadAds() {
@@ -147,10 +117,7 @@ public class HomeActivity extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else if (webView.canGoBack()) {
+        if (webView.canGoBack()) {
             if (isOnline()) {
                 llError.setVisibility(View.GONE);
                 webView.setVisibility(View.VISIBLE);
@@ -204,60 +171,6 @@ public class HomeActivity extends AppCompatActivity
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    @SuppressWarnings("StatementWithEmptyBody")
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.nav_home) {
-            if (isOnline()) {
-                llError.setVisibility(View.GONE);
-                webView.setVisibility(View.VISIBLE);
-                startWebView(url);
-            } else {
-                llError.setVisibility(View.VISIBLE);
-                webView.setVisibility(View.GONE);
-                if (progressDialog != null && progressDialog.isShowing())
-                    progressDialog.dismiss();
-            }
-        } else if (id == R.id.nav_share) {
-
-            String shareBody = "https://play.google.com/store/apps/details?id=" + mContext.getPackageName();
-            Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
-            sharingIntent.setType("text/plain");
-            sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, getResources().getString(R.string.app_name));
-            sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
-            startActivity(Intent.createChooser(sharingIntent, "Share using"));
-
-        } else if (id == R.id.nav_mail) {
-
-            String[] TO = {getResources().getString(R.string.email)};
-            String[] CC = {""};
-
-            Intent emailIntent = new Intent(Intent.ACTION_SEND);
-
-            emailIntent.setData(Uri.parse("mailto:" + getResources().getString(R.string.email)));
-            emailIntent.setType("text/plain");
-            emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
-            emailIntent.putExtra(Intent.EXTRA_CC, CC);
-            emailIntent.putExtra(Intent.EXTRA_SUBJECT, getResources().getString(R.string.app_name) + " - Inquiry from mobile");
-            emailIntent.putExtra(Intent.EXTRA_TEXT, "Hi, " + getResources().getString(R.string.app_name) + "\nURL: " + webView.getUrl() + "\n\n");
-
-            try {
-                startActivity(Intent.createChooser(emailIntent, "Send mail..."));
-                finish();
-            } catch (android.content.ActivityNotFoundException ex) {
-                Toast.makeText(mContext, "There is no email client installed.", Toast.LENGTH_SHORT).show();
-            }
-        }
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
     }
 
     private void startWebView(String url) {
@@ -346,6 +259,4 @@ public class HomeActivity extends AppCompatActivity
             return false;
         }
     }
-
-
 }

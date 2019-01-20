@@ -16,4 +16,5 @@
     <string name="admob_app_id">ca-app-pub-XXXXXXXX~XXXXXXXXXXX</string>
     <string name="banner_home_footer">ca-app-pub-3940256099942544/6300978111</string>
     <string name="interstitial_full_screen">ca-app-pub-3940256099942544/1033173712</string>
+    <string name="title_activity_no_action_bar">NoActionBarActivity</string>
 </resources>
