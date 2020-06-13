@@ -15,6 +15,8 @@ repositories {
     maven { url 'https://maven.google.com' }
 }
 
+def multidex_version = "2.0.1"
+
 android {
 
     compileOptions {
@@ -32,6 +34,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
+        multiDexEnabled true
         manifestPlaceholders = [
                 onesignal_app_id               : '8543624a-9d00-44ee-b9ca-a1d87bb45b56',
                 onesignal_google_project_number: 'REMOTE'
@@ -56,6 +59,9 @@ dependencies {
     implementation 'com.onesignal:OneSignal:[3.9.0, 3.99.99]'
 
     implementation 'com.google.android.gms:play-services-ads:19.1.0'
+
+
+    implementation "androidx.multidex:multidex:$multidex_version"
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
