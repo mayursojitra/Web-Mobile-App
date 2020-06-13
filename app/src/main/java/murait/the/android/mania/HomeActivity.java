@@ -1,6 +1,5 @@
 package murait.the.android.mania;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
@@ -9,33 +8,35 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.NavigationView;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.webkit.WebResourceRequest;
-import android.webkit.WebResourceResponse;
+import android.webkit.DownloadListener;
+import android.webkit.ValueCallback;
+import android.webkit.WebChromeClient;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.Toast;
+
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.navigation.NavigationView;
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    private final static int FILECHOOSER_RESULTCODE = 190;
     private ProgressDialog progressDialog;
     private PrefManager prefManager;
-    private Activity mContext;
+    private Context mContext;
     private WebView webView;
     private String url = "https://www.theandroid-mania.com/";
     private View llError;
@@ -43,6 +44,7 @@ public class HomeActivity extends AppCompatActivity
     private AdView mAdView;
     private InterstitialAd mInterstitialAd;
     private AdRequest interAdRequest;
+    private ValueCallback<Uri[]> mUploadMessage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +66,7 @@ public class HomeActivity extends AppCompatActivity
             public void onClick(View view) {
                 String phno = "tel:" + getResources().getString(R.string.phone);
                 Intent i = new Intent(Intent.ACTION_DIAL, Uri.parse(phno));
-                mContext.startActivity(i);
+                startActivity(i);
             }
         });
 
@@ -265,58 +267,28 @@ public class HomeActivity extends AppCompatActivity
         //Create new webview Client to show progress dialog
         //When opening a url or click on link
 
-        webView.setWebViewClient(new WebViewClient() {
+        WebViewCustomClient webViewCustomClient = new WebViewCustomClient(mContext);
+        webViewCustomClient.setInterAdRequest(interAdRequest);
+        webViewCustomClient.setmInterstitialAd(mInterstitialAd);
+        webView.setWebViewClient(webViewCustomClient);
 
-            //If you will not use this method url links are opeen in new brower not in webview
-            public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                currentUrl = url;
-                view.loadUrl(url);
-                prefManager.addVar();
-                if (prefManager.getVar() % PrefManager.ADS_SHOW_TIME == 0) {
-                    // Load ads into Interstitial Ads
-                    mInterstitialAd.loadAd(interAdRequest);
-                    if (mInterstitialAd.isLoaded())
-                        mInterstitialAd.show();
-                }
-                return true;
-            }
-
-            //Show loader on url load
-            public void onLoadResource(WebView view, String url) {
-                if (progressDialog == null) {
-                    // in standard case YourActivity.this
-                    progressDialog = new ProgressDialog(mContext);
-                    progressDialog.setMessage("Loading...");
-                    progressDialog.show();
-                    prefManager.addVar();
-                }
-            }
-
-
-            public void onPageFinished(WebView view, String url) {
-                try {
-                    if (progressDialog.isShowing()) {
-                        progressDialog.dismiss();
-                        prefManager.addVar();
-                        progressDialog = null;
-                    }
-                } catch (Exception exception) {
-                    exception.printStackTrace();
-                }
-            }
-
+        webView.setWebChromeClient(new WebChromeClient() {
             @Override
-            public void onReceivedHttpError(WebView view, WebResourceRequest request, WebResourceResponse errorResponse) {
-                //super.onReceivedHttpError(view, request, errorResponse);
-                if (isOnline()) {
-                    llError.setVisibility(View.GONE);
-                    webView.setVisibility(View.VISIBLE);
-                } else {
-                    llError.setVisibility(View.VISIBLE);
-                    webView.setVisibility(View.GONE);
-                    if (progressDialog != null && progressDialog.isShowing())
-                        progressDialog.dismiss();
+            public boolean onShowFileChooser(WebView webView, ValueCallback<Uri[]> filePathCallback, FileChooserParams fileChooserParams) {
+
+                if (mUploadMessage != null) {
+                    mUploadMessage.onReceiveValue(null);
                 }
+
+                mUploadMessage = filePathCallback;
+
+                Intent i = new Intent(Intent.ACTION_GET_CONTENT);
+                i.addCategory(Intent.CATEGORY_OPENABLE);
+                i.setType("*/*");
+
+                startActivityForResult(Intent.createChooser(i, "File Chooser"), FILECHOOSER_RESULTCODE);
+
+                return true;
             }
         });
 
@@ -328,7 +300,18 @@ public class HomeActivity extends AppCompatActivity
         webView.getSettings().setUseWideViewPort(true);
         webView.setScrollBarStyle(WebView.SCROLLBARS_OUTSIDE_OVERLAY);
         webView.setScrollbarFadingEnabled(false);
-        webView.getSettings().setBuiltInZoomControls(true);
+        webView.getSettings().setBuiltInZoomControls(false);
+        webView.getSettings().setAllowContentAccess(true);
+
+        webView.setDownloadListener(new DownloadListener() {
+            public void onDownloadStart(String url, String userAgent,
+                                        String contentDisposition, String mimetype,
+                                        long contentLength) {
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(url));
+                startActivity(i);
+            }
+        });
 
         currentUrl = url;
         //Load url in webview
@@ -344,6 +327,25 @@ public class HomeActivity extends AppCompatActivity
             return true;
         } else {
             return false;
+        }
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+
+        super.onActivityResult(requestCode, resultCode, intent);
+        if (requestCode == FILECHOOSER_RESULTCODE) {
+            if (null == mUploadMessage || intent == null || resultCode != RESULT_OK) {
+                return;
+            }
+            Uri[] result = null;
+            String dataString = intent.getDataString();
+            if (dataString != null) {
+                result = new Uri[]{Uri.parse(dataString)};
+            }
+            mUploadMessage.onReceiveValue(result);
+            mUploadMessage = null;
         }
     }
 

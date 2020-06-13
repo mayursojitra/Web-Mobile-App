@@ -9,7 +9,7 @@ public class PrefManager {
     public SharedPreferences.Editor editor;
     public final static int ADS_SHOW_TIME = 10;
 
-    PrefManager(Activity mContext) {
+    PrefManager(Context mContext) {
         if (pref == null) {
             pref = mContext.getSharedPreferences("WebView", Context.MODE_PRIVATE);
         }
