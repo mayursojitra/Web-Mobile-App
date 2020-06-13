@@ -84,10 +84,6 @@ Change intent filter in `AndroidManifest.xml`
 Change intent filter in `AndroidManifest.xml`
 ```xml
     <activity
-    android:name=".NoActionBarActivity"
-    android:theme="@style/AppTheme.NoActionBar">
-    </activity>
-    <activity
     android:name=".SplashActivity"
     android:theme="@style/AppTheme.NoActionBar">
         <intent-filter>
@@ -112,7 +108,6 @@ _**You Are DONE**_
 # Network Profiles
 
 - [Linkedin](https://www.linkedin.com/in/mayursojitra/)
-- [Facebook](https://www.facebook.com/mayur.sojitra55)
 - [Twitter](https://twitter.com/mayur_sojitra)
 - [Instagram](https://www.instagram.com/mayursojitra/)
 - [Quora](https://www.quora.com/profile/Mayur-Sojitra)
@@ -120,6 +115,6 @@ _**You Are DONE**_
 # Contact Me
 
 - [**Mail me**](mailto:hello@murait.com)
-- [**Contact Us**](https://www.theandroid-mania.com/contact)
+- [**Contact Us**](https://www.murait.com/contact-us/)
 
 :+1: **Happy Coding!!!**
