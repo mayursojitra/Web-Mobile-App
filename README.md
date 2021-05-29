@@ -1,6 +1,9 @@
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/c6b59b9ed05b45d5b2e4b2747d3cfc9a)](https://app.codacy.com/app/pratikbutani/MultiSelectSpinner?utm_source=github.com&utm_medium=referral&utm_content=pratikbutani/MultiSelectSpinner&utm_campaign=Badge_Grade_Dashboard)
+[![](https://jitpack.io/v/pratikbutani/MultiSelectSpinner.svg)](https://jitpack.io/#mayursojitra/Web-Mobile-App)
+
 # Web to Android Mobile App
 
-This is simple webview application with basic functionalities
+## This is simple webview application with basic functionalities
 
 # Demo
 
@@ -116,5 +119,17 @@ _**You Are DONE**_
 
 - [**Mail me**](mailto:hello@murait.com)
 - [**Contact Us**](https://www.murait.com/contact-us/)
+
+# License
+
+GNU GENERAL PUBLIC LICENSE
+Version 3, 29 June 2007
+Copyright (C) 2007 Free Software Foundation, Inc. <https://fsf.org/> Everyone is permitted to copy and distribute verbatim copies of this license document, but changing it is not allowed.
+
+## Buy a cup of coffee
+If you found this project helpful or you learned something from the source code and want to thank me, consider buying me a cup of ☕️ [Buy Me a Coffee](https://www.buymeacoffee.com/mayur)
+
+### Do not forget to give star If its useful to you. :)
+
 
 :+1: **Happy Coding!!!**
