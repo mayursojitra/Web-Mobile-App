@@ -2,15 +2,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/action_share"
-        android:icon="@drawable/ic_nav_share"
+        android:id="@+id/action_settings"
         android:orderInCategory="100"
-        android:title="Share"
-        app:showAsAction="always" />
-    <item
-        android:id="@+id/action_rate"
-        android:icon="@drawable/ic_nav_start"
-        android:orderInCategory="100"
-        android:title="Rate US"
-        app:showAsAction="always" />
+        android:title="@string/action_settings"
+        app:showAsAction="never" />
 </menu>

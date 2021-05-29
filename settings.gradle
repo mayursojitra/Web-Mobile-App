@@ -1,1 +1,2 @@
+rootProject.name = "Web Mobile App"
 include ':app'
